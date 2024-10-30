@@ -12,8 +12,8 @@ st.set_page_config(layout="wide")
 
 # Load existing data from files
 def load_existing_data():
-    preprocessed_csv_path = Path(__file__).parent / "data/dataset.csv"
-    areaxy_csv_path = Path(__file__).parent / "data/dataset.csv"
+    preprocessed_csv_path = Path(__file__).parent / "data/preprocessed.csv"
+    areaxy_csv_path = Path(__file__).parent / "data/area_xy.csv"
 
     existing_data = pd.read_csv(preprocessed_csv_path)
     existing_data2 = pd.read_csv(areaxy_csv_path)
