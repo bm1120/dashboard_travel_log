@@ -1,0 +1,53 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    networks:
+      - analysis_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./csv_data:/csv_data
+      - ./sql:/docker-entrypoint-initdb.d
+
+  jupyter:
+    image: travellog_recsys:latest
+    container_name: jupyter_lab
+    platform: linux/amd64 # platform을 linux/amd64로 변환
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - ./notebooks:/notebooks
+    networks:
+      - analysis_network
+    depends_on:
+      - postgres
+
+  streamlit_dashboard:
+    image: streamlit:latest
+    container_name: streamlit_dashboard
+    platform: linux/amd64 # platform을 linux/amd64로 변환
+    # command: streamlit run /app/streamlit_app.py  # Adjust the path to your Streamlit app file
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./streamlit_app:/app  # Adjust the volume path for your app files
+    networks:
+      - analysis_network
+    depends_on:
+      - postgres
+
+networks:
+  analysis_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
