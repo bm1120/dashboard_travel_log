@@ -39,10 +39,10 @@ referencing==0.35.1
 requests==2.32.3
 rich==13.9.3
 rpds-py==0.20.0
-scikit-image==0.19.3
-scikit-learn==1.2.2
-scikit-surprise==1.1.1
-scipy==1.11.4
+scikit-image
+scikit-learn
+scikit-surprise
+scipy
 six==1.16.0
 smmap==5.0.1
 streamlit
