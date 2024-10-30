@@ -10,8 +10,8 @@ st.set_page_config(layout="wide")
 
 # Load existing data from files
 def load_existing_data():
-    existing_data = pd.read_csv('preprocessed.csv')
-    existing_data2 = pd.read_csv('area_xy.csv')
+    existing_data = pd.read_csv('data/preprocessed.csv')
+    existing_data2 = pd.read_csv('data/area_xy.csv')
     return existing_data, existing_data2
 
 preprocessed, area_coord_f = load_existing_data()
