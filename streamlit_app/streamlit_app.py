@@ -4,14 +4,19 @@ from surprise.dataset import Reader, Dataset
 from surprise import SVD
 import folium
 from streamlit_folium import st_folium
+from pathlib import Path
+
 
 # Set Streamlit page configuration
 st.set_page_config(layout="wide")
 
 # Load existing data from files
 def load_existing_data():
-    existing_data = pd.read_csv('data/preprocessed.csv')
-    existing_data2 = pd.read_csv('data/area_xy.csv')
+    preprocessed_csv_path = Path(__file__).parent / "data/dataset.csv"
+    areaxy_csv_path = Path(__file__).parent / "data/dataset.csv"
+
+    existing_data = pd.read_csv(preprocessed_csv_path)
+    existing_data2 = pd.read_csv(areaxy_csv_path)
     return existing_data, existing_data2
 
 preprocessed, area_coord_f = load_existing_data()
