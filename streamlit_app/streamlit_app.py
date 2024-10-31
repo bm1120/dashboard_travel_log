@@ -111,7 +111,7 @@ with right_col:
         pred_df = st.session_state.pred_df
 
         # Create a Folium map
-        m = folium.Map(location=[pred_df["lat"].mean(), pred_df["lon"].mean()], zoom_start=10)
+        m = folium.Map(location=[pred_df["lat"].mean(), pred_df["lon"].mean()], zoom_start=8)
 
         # Add markers with clickable links
         for _, row in pred_df.iterrows():
@@ -133,6 +133,6 @@ with right_col:
         st_folium(m, width=700, height=500)
         
         # Display prediction DataFrame for reference
-        st.dataframe(pred_df)
+        # st.dataframe(pred_df)
     else:
         st.write("No recommendations available yet. Click 'Recommend' to generate suggestions.")
